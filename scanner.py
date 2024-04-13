@@ -3,19 +3,10 @@ from threading import Thread
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
 
-N = 2**16 - 1
-
-for port in range(1,100):
-    sock = socket.socket()
 def scan_port(host, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(1)
     try:
-        print(port)
-        sock.connect(('127.0.0.1', port))
-        print("Порт", i, "открыт")
-    except:
-        continue
         result = sock.connect_ex((host, port))
         if result == 0:
             return port
@@ -24,8 +15,6 @@ def scan_port(host, port):
     except Exception as e:
         return None
     finally:
-        sock.close()
-
         sock.close()
         
 def scan_ports(host):
@@ -42,5 +31,8 @@ def scan_ports(host):
 
 if __name__ == "__main__":
     host = input("Enter the host/IP address to scan: ")
+    host = input("Введите имя хоста/IP-адрес для сканирования: ")
     open_ports = scan_ports(host)
     print("Open ports:", open_ports)
+    print("Открытые порты:", open_ports)
+    
